@@ -54,6 +54,10 @@
 
   header, main, footer{position:relative;z-index:1;}
 
+  /* SCROLL SPINE */
+  .scroll-spine{position:fixed;top:0;left:0;width:2px;height:100vh;background:rgba(255,255,255,.05);z-index:90;}
+  .scroll-spine-fill{width:100%;height:0%;background:var(--blue);box-shadow:0 0 12px rgba(24,62,250,.6);}
+
   /* TOP TICKER */
   .top-ticker{position:fixed;top:0;left:0;right:0;z-index:110;height:34px;
     background:var(--blue);overflow:hidden;display:flex;align-items:center;}
@@ -71,6 +75,8 @@
   .dh-icon{display:block;}
   .dh-icon--nav{width:52px;height:auto;}
   .dh-icon--hero{width:min(46vw,300px);height:auto;margin:0 auto;}
+  .hero-dh-split{display:flex;align-items:center;justify-content:center;will-change:transform,filter;}
+  .dh-icon--hero-half{width:min(23vw,150px);height:auto;display:block;will-change:transform;}
   .dh-icon--footer{width:46px;height:auto;margin:0 auto;}
   .nav-links{display:flex;gap:36px;align-items:center;position:relative;}
   .nav-links > a, .nav-menu-wrap > a{font-size:14px;color:var(--text);position:relative;padding:4px 0;display:inline-block;}
@@ -131,6 +137,7 @@
     font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--text);
     letter-spacing:-.01em;line-height:1.2;max-width:100%;cursor:default;
   }
+  .fly-word{display:inline-block;white-space:nowrap;}
   .fly-letter{display:inline-block;transition:transform .3s ease;will-change:transform;}
 
   /* ABOUT extras */
@@ -143,6 +150,10 @@
   @media (max-width:700px){.founders-grid{grid-template-columns:1fr;}}
   .founder{display:flex;flex-direction:column;align-items:flex-start;}
   .founder-letter{font-size:96px;font-weight:800;color:var(--blue);line-height:1;margin-bottom:24px;}
+  .founder-photo, .event-feature, .carousel, .video-embed{transition:box-shadow .3s ease,border-color .3s ease;}
+  .founder-photo:hover, .event-feature:hover, .carousel:hover, .video-embed:hover{
+    border-color:rgba(24,62,250,.5);box-shadow:0 0 0 1px rgba(24,62,250,.3),0 0 36px rgba(24,62,250,.14);
+  }
   .founder-photo{width:100%;aspect-ratio:1;background:var(--bg-2);border:1px solid var(--border);
     display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:13px;margin-bottom:20px;}
   .founder h4{font-size:20px;font-weight:700;margin-bottom:10px;}
@@ -209,6 +220,22 @@
   .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
   .future-events{margin-top:32px;border-top:1px solid var(--border);padding-top:32px;
     color:var(--text-dim);font-size:14px;}
+
+  /* CAROUSEL */
+  .carousel{position:relative;overflow:hidden;border:1px solid var(--border);margin-top:24px;}
+  .carousel-track{display:flex;transition:transform .5s cubic-bezier(.16,.84,.44,1);}
+  .carousel-slide{min-width:100%;aspect-ratio:16/7;display:flex;align-items:center;justify-content:center;
+    color:var(--text-dim);font-size:clamp(20px,3vw,32px);font-weight:800;letter-spacing:.02em;}
+  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(5,6,8,.65);
+    border:1px solid var(--border);color:var(--text);width:42px;height:42px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;z-index:5;
+    transition:border-color .2s ease,color .2s ease;}
+  .carousel-btn:hover{border-color:var(--blue);color:var(--blue);}
+  .carousel-btn.prev{left:16px;}
+  .carousel-btn.next{right:16px;}
+  .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:18px;}
+  .carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;border:none;padding:0;transition:background .2s ease;}
+  .carousel-dot.active{background:var(--blue);}
 
   /* COUNTDOWN */
   .countdown{margin-top:24px;text-align:center;}
@@ -298,12 +325,24 @@
       <path fill="none" stroke="#F5F7FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" transform="rotate(8 1237.5 200)" d="M1185,145 L1268,255 L1290,145"/>
       <path fill="none" stroke="#F5F7FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-8 1237.5 1120)" d="M1185,1175 L1268,1065 L1290,1175"/>
     </symbol>
+    <symbol id="dh-logo-mark-D" viewBox="0 0 1310 1320">
+      <path fill-rule="evenodd" fill="#183EFA" d="M90,90 H970 Q1250,90 1250,370 V1050 Q1250,1230 970,1230 H90 Z M330,330 H970 Q1010,330 1010,370 V950 Q1010,990 970,990 H330 Z"/>
+      <path fill="none" stroke="#F5F7FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" transform="rotate(8 1237.5 200)" d="M1185,145 L1268,255 L1290,145"/>
+      <path fill="none" stroke="#F5F7FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-8 1237.5 1120)" d="M1185,1175 L1268,1065 L1290,1175"/>
+    </symbol>
+    <symbol id="dh-logo-mark-H" viewBox="1300 0 1260 1320">
+      <rect fill="#183EFA" x="1300" y="90" width="240" height="1140"/>
+      <rect fill="#183EFA" x="2220" y="90" width="240" height="1140"/>
+      <rect fill="#183EFA" x="1540" y="540" width="680" height="240"/>
+    </symbol>
   </defs>
 </svg>
 
 
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="field"></canvas>
+
+<div class="scroll-spine"><div class="scroll-spine-fill" id="scrollSpineFill"></div></div>
 
 <div class="top-ticker" role="status">
   <div class="ticker-track">
@@ -341,7 +380,10 @@
 <main>
 
   <section id="home">
-    <svg class="dh-icon dh-icon--hero reveal in" aria-label="DH"><use href="#dh-logo-mark"/></svg>
+    <div class="hero-dh-split reveal in" id="heroSplit">
+      <svg class="dh-icon dh-icon--hero-half" viewBox="0 0 1310 1320" aria-label="D"><use href="#dh-logo-mark-D"/></svg>
+      <svg class="dh-icon dh-icon--hero-half" viewBox="1300 0 1260 1320" aria-label="H"><use href="#dh-logo-mark-H"/></svg>
+    </div>
     <div class="scroll-hint"></div>
   </section>
 
@@ -388,6 +430,22 @@
         <div class="countdown-unit"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-word">Minutes</div></div>
         <div class="countdown-unit"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-word">Seconds</div></div>
       </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px;">
+      <h3 class="about-subhead">Gallery</h3>
+      <div class="carousel" id="eventCarousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide" style="background:linear-gradient(135deg,#101425,#0a0c10);">Hackathon</div>
+          <div class="carousel-slide" style="background:linear-gradient(135deg,#0f1a2e,#0a0c10);">Networking Event</div>
+          <div class="carousel-slide" style="background:linear-gradient(135deg,#151022,#0a0c10);">Build Night</div>
+          <div class="carousel-slide" style="background:linear-gradient(135deg,#0f1f22,#0a0c10);">Workshop</div>
+          <div class="carousel-slide" style="background:linear-gradient(135deg,#1a1220,#0a0c10);">Team Meetup</div>
+        </div>
+        <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous slide">‹</button>
+        <button class="carousel-btn next" id="carouselNext" aria-label="Next slide">›</button>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </section>
 
@@ -722,8 +780,17 @@ window.addEventListener('mousemove', e=>{
   mouse.x = e.clientX;
   mouse.y = e.clientY + window.scrollY;
 });
+let lastScrollY = window.scrollY;
+let scrollVelocity = 0;
+window.addEventListener('scroll', ()=>{
+  const current = window.scrollY;
+  scrollVelocity = current - lastScrollY;
+  lastScrollY = current;
+}, {passive:true});
 function draw(){
   ctx.clearRect(0,0,w,h);
+  scrollVelocity *= 0.9; // decay
+  const speedBoost = Math.min(3, Math.abs(scrollVelocity) * 0.08);
   for(const p of particles){
     const dx = p.x-mouse.x, dy = p.y-mouse.y;
     const dist = Math.sqrt(dx*dx+dy*dy);
@@ -736,7 +803,7 @@ function draw(){
     ctx.globalAlpha = p.baseOpacity;
     ctx.fillStyle = p.blue ? '#183EFA' : '#F5F7FF';
     ctx.fillRect(p.x+ox, p.y+oy, p.size, p.size);
-    p.y -= p.speed;
+    p.y -= p.speed * (1 + speedBoost);
     if(p.y < -5){ p.y = h+5; p.x = Math.random()*w; }
   }
   ctx.globalAlpha = 1;
@@ -745,6 +812,88 @@ function draw(){
 window.addEventListener('resize', ()=>{ resize(); initParticles(); });
 resize(); initParticles(); draw();
 setTimeout(()=>{ resize(); }, 500); // catch late layout shifts
+
+// Image carousel
+(function(){
+  const track = document.getElementById('carouselTrack');
+  if(!track) return;
+  const slides = track.querySelectorAll('.carousel-slide');
+  const dotsWrap = document.getElementById('carouselDots');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  let index = 0;
+  slides.forEach((_, i)=>{
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i===0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to slide '+(i+1));
+    dot.addEventListener('click', ()=>{ index = i; update(); });
+    dotsWrap.appendChild(dot);
+  });
+  const dots = dotsWrap.querySelectorAll('.carousel-dot');
+  function update(){
+    track.style.transform = `translateX(-${index*100}%)`;
+    dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+  }
+  function next(){ index = (index+1) % slides.length; update(); }
+  function prev(){ index = (index-1+slides.length) % slides.length; update(); }
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  let autoplay = setInterval(next, 4500);
+  const carousel = document.getElementById('eventCarousel');
+  carousel.addEventListener('mouseenter', ()=>clearInterval(autoplay));
+  carousel.addEventListener('mouseleave', ()=>{ autoplay = setInterval(next, 4500); });
+})();
+
+// Magnetic buttons
+document.querySelectorAll('.btn').forEach(btn=>{
+  btn.addEventListener('mousemove', (e)=>{
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width/2;
+    const y = e.clientY - rect.top - rect.height/2;
+    btn.style.transform = `translate(${x*0.25}px, ${y*0.22}px)`;
+  });
+  btn.addEventListener('mouseleave', ()=>{ btn.style.transform = ''; });
+});
+
+// Scramble-in section headings
+(function(){
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*01234567890';
+  function scramble(el){
+    const original = el.textContent;
+    let frame = 0;
+    const totalFrames = 22;
+    const iv = setInterval(()=>{
+      frame++;
+      const revealCount = Math.floor((frame/totalFrames)*original.length);
+      let out = '';
+      for(let i=0;i<original.length;i++){
+        if(original[i] === ' '){ out += ' '; continue; }
+        out += i < revealCount ? original[i] : chars[Math.floor(Math.random()*chars.length)];
+      }
+      el.textContent = out;
+      if(frame >= totalFrames){ clearInterval(iv); el.textContent = original; }
+    }, 28);
+  }
+  const titles = document.querySelectorAll('h2.section-title');
+  const titleIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ scramble(entry.target); titleIO.unobserve(entry.target); }
+    });
+  }, {threshold:0.4});
+  titles.forEach(t=>titleIO.observe(t));
+})();
+
+// Subtle 3D tilt on cards
+document.querySelectorAll('.founder-photo, .video-embed, .event-feature, .carousel').forEach(el=>{
+  el.style.transition = (el.style.transition ? el.style.transition+',' : '') + 'transform .25s ease';
+  el.addEventListener('mousemove', (e)=>{
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left)/rect.width - 0.5;
+    const py = (e.clientY - rect.top)/rect.height - 0.5;
+    el.style.transform = `perspective(700px) rotateY(${px*7}deg) rotateX(${-py*7}deg)`;
+  });
+  el.addEventListener('mouseleave', ()=>{ el.style.transform = ''; });
+});
 
 // Countdown to DHack'26
 (function(){
@@ -791,24 +940,74 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:0.15});
 revealEls.forEach(el=>io.observe(el));
 
-// Hero parallax fade on scroll
-const heroMark = document.querySelector('.dh-icon--hero');
-window.addEventListener('scroll', ()=>{
+// Hero: cinematic split-apart, scale, and blur on scroll
+const heroSplit = document.querySelector('#heroSplit');
+const heroHalves = document.querySelectorAll('.dh-icon--hero-half');
+const titleEls = document.querySelectorAll('h2.section-title');
+let scrollTicking = false;
+function updateScrollEffects(){
   const y = window.scrollY;
-  const fade = Math.max(0, 1 - y/500);
-  const shift = y*0.25;
-  if(heroMark){ heroMark.style.opacity = fade; heroMark.style.transform = `translateY(${shift}px)`; }
+  const vh = window.innerHeight || 800;
+
+  // Scroll progress spine
+  const spineFill = document.getElementById('scrollSpineFill');
+  if(spineFill){
+    const docHeight = document.documentElement.scrollHeight - vh;
+    const pct = docHeight > 0 ? Math.min(100, (y / docHeight) * 100) : 0;
+    spineFill.style.height = pct + '%';
+  }
+
+  // Hero
+  const progress = Math.min(1, y / (vh * 0.9));
+  const fade = Math.max(0, 1 - progress * 1.3);
+  const scale = 1 + progress * 0.35;
+  const blur = progress * 6;
+  const lift = y * 0.2;
+  const spread = progress * 90;
+  if(heroSplit){
+    heroSplit.style.opacity = fade;
+    heroSplit.style.transform = `translateY(${-lift}px) scale(${scale})`;
+    heroSplit.style.filter = `blur(${blur}px)`;
+  }
+  heroHalves.forEach((half, i)=>{
+    const dir = i === 0 ? -1 : 1;
+    half.style.transform = `translateX(${dir * spread}px)`;
+  });
+
+  // Section headings drift through space as they cross the viewport
+  titleEls.forEach(el=>{
+    const rect = el.getBoundingClientRect();
+    const center = rect.top + rect.height/2;
+    const dist = (center - vh/2) / vh;
+    const clamped = Math.max(-1, Math.min(1, dist));
+    el.style.transform = `translateX(${clamped * -50}px)`;
+  });
+
+  scrollTicking = false;
+}
+window.addEventListener('scroll', ()=>{
+  if(!scrollTicking){
+    requestAnimationFrame(updateScrollEffects);
+    scrollTicking = true;
+  }
 }, {passive:true});
+updateScrollEffects();
 
 // Fly-apart hover text
 document.querySelectorAll('.mission-fly').forEach(el=>{
   const text = el.textContent;
   el.innerHTML = '';
-  text.split('').forEach(ch=>{
-    const span = document.createElement('span');
-    span.className = 'fly-letter';
-    span.textContent = ch === ' ' ? '\u00A0' : ch;
-    el.appendChild(span);
+  text.split(' ').forEach((word, wi, arr)=>{
+    const wordSpan = document.createElement('span');
+    wordSpan.className = 'fly-word';
+    word.split('').forEach(ch=>{
+      const span = document.createElement('span');
+      span.className = 'fly-letter';
+      span.textContent = ch;
+      wordSpan.appendChild(span);
+    });
+    el.appendChild(wordSpan);
+    if(wi < arr.length - 1){ el.appendChild(document.createTextNode(' ')); }
   });
   let flyInterval;
   const scatter = ()=>{
@@ -876,3 +1075,4 @@ document.querySelectorAll('form[action]').forEach(f=>{
 
 </body>
 </html>
+
