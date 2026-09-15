@@ -127,13 +127,12 @@
   .about-block{margin-top:64px;max-width:640px;}
   .about-subhead{font-size:14px;color:var(--blue);letter-spacing:.04em;margin-bottom:16px;font-weight:700;}
   .about-text{font-size:16px;line-height:1.75;color:var(--text-dim);}
-  .unknown-list{list-style:none;}
-  .unknown-list li{font-size:18px;line-height:2;color:var(--text);position:relative;padding-left:20px;}
-  .unknown-list li::before{content:"—";position:absolute;left:0;color:var(--blue);}
 
   .founders-block{margin-top:80px;}
   .founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:32px;max-width:760px;}
   @media (max-width:700px){.founders-grid{grid-template-columns:1fr;}}
+  .founder{display:flex;flex-direction:column;align-items:flex-start;}
+  .founder-letter{font-size:96px;font-weight:800;color:var(--blue);line-height:1;margin-bottom:24px;}
   .founder-photo{width:100%;aspect-ratio:1;background:var(--bg-2);border:1px solid var(--border);
     display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:13px;margin-bottom:20px;}
   .founder h4{font-size:20px;font-weight:700;margin-bottom:10px;}
@@ -186,6 +185,22 @@
   .future-events{margin-top:32px;border-top:1px solid var(--border);padding-top:32px;
     color:var(--text-dim);font-size:14px;}
 
+  /* COUNTDOWN */
+  .countdown{margin-top:48px;text-align:center;}
+  .countdown-label{font-size:13px;color:var(--text-dim);letter-spacing:.06em;margin-bottom:24px;}
+  .countdown-grid{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
+  .countdown-unit{min-width:90px;padding:24px 16px;border:1px solid var(--border);background:var(--bg-2);}
+  .countdown-num{font-size:40px;font-weight:800;color:var(--blue);line-height:1;}
+  .countdown-word{margin-top:10px;font-size:12px;color:var(--text-dim);letter-spacing:.04em;}
+
+  /* VIDEO GRID */
+  .video-intro{margin-top:48px;max-width:820px;}
+  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;}
+  @media (max-width:800px){.video-grid{grid-template-columns:1fr;}}
+  .video-embed{position:relative;width:100%;aspect-ratio:16/9;background:var(--bg-2);border:1px solid var(--border);overflow:hidden;}
+  .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-caption{margin-top:16px;font-size:14px;color:var(--text-dim);}
+
   /* TEAM */
   .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:32px;margin-top:64px;}
   .team-member{text-align:left;}
@@ -231,6 +246,12 @@
   footer{padding:64px 48px 40px;border-top:1px solid var(--border);text-align:center;}
   footer .nav-logo{font-size:16px;}
   footer p{color:var(--text-dim);font-size:13px;margin-top:12px;}
+  .social-links{display:flex;justify-content:center;gap:18px;margin-top:20px;}
+  .social-icon{color:var(--text-dim);display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--border);transition:all .25s ease;}
+  .social-icon:hover{color:var(--blue);border-color:var(--blue);}
+  .contact-email{color:var(--blue);font-size:16px;border-bottom:1px solid transparent;transition:border-color .2s ease;}
+  .contact-email:hover{border-bottom-color:var(--blue);}
 
   a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
     outline:2px solid var(--blue);outline-offset:2px;
@@ -253,7 +274,7 @@
     <a href="#about">About</a>
     <a href="#events">Events</a>
     <a href="#projects">Projects</a>
-    <a href="#team">Team</a>
+    <a href="#founders">Team</a>
     <div class="nav-menu-wrap" id="joinWrap">
       <a href="#join">Join Us</a>
       <div class="nav-dropdown">
@@ -285,33 +306,58 @@
       <p class="about-text">DH is an organization working at the intersection of science, medicine, engineering, and exploration to address problems whose solutions don't yet exist. This includes cancer, mental health, AI, ML, robotics, aerospace, and engineering.</p>
     </div>
 
-    <div class="about-block reveal">
-      <h3 class="about-subhead">The unknown is</h3>
-      <ul class="unknown-list">
-        <li>the unanswered scientific question</li>
-        <li>the unsolved disease</li>
-        <li>the undiscovered knowledge</li>
-        <li>the unlisted technology</li>
-        <li>the unexplored universe</li>
-      </ul>
-    </div>
-
-    <div class="about-block reveal">
+    <div class="about-block reveal" style="margin-top:80px;">
       <h3 class="about-subhead">Philosophy</h3>
       <p class="about-text">Humanity's greatest advances have come from doing what we thought was impossible and what we did not yet understand. Diseases once considered incurable became treatable. Technologies like airplanes proved we could fly. Humans left Earth and began exploring beyond it. DH exists to pursue what comes next. We believe the unknown is not a boundary — it's an infinite invitation for humans to do something.</p>
     </div>
+  </section>
 
+  <section id="events">
+    <div class="reveal">
+      <h2 class="section-title">Events</h2>
+    </div>
+    <div class="event-feature reveal">
+      <div>
+        <h3>DHack'26</h3>
+        <p>Event description to be added here — replace this placeholder with the official DHack'26 overview once finalized.</p>
+        <a href="#" class="btn">Register</a>
+        <a href="#" class="btn btn-outline" style="margin-left:12px;">Speaker &amp; Schedule Info</a>
+      </div>
+      <div class="event-meta">
+        <div class="event-meta-row"><div class="label">Date</div><div class="value">December 5–6, 2026</div></div>
+        <div class="event-meta-row"><div class="label">Time</div><div class="value">9:00 AM – 9:00 PM (12 hours)</div></div>
+        <div class="event-meta-row"><div class="label">Location</div><div class="value">To be announced</div></div>
+        <div class="event-meta-row"><div class="label">Sponsors</div><div class="value">To be announced</div></div>
+        <div class="event-meta-row"><div class="label">Speakers</div><div class="value">To be announced</div></div>
+      </div>
+    </div>
+    <div class="countdown reveal" id="countdown">
+      <div class="countdown-label">Time until DHack'26</div>
+      <div class="countdown-grid">
+        <div class="countdown-unit"><div class="countdown-num" id="cd-days">--</div><div class="countdown-word">Days</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-word">Hours</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-word">Minutes</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-word">Seconds</div></div>
+      </div>
+    </div>
+    <div class="future-events reveal">More DH events will be listed here as they're scheduled.</div>
+  </section>
+
+  <section id="founders">
+    <div class="reveal">
+      <h2 class="section-title">Team</h2>
+    </div>
     <div class="reveal founders-block">
       <h3 class="about-subhead">Founders</h3>
       <div class="founders-grid">
         <div class="founder">
+          <div class="founder-letter">D</div>
           <div class="founder-photo">Photo</div>
-          <h4>D — Dhatri</h4>
           <p class="founder-bio">Bio coming soon.</p>
         </div>
         <div class="founder">
+          <div class="founder-letter">H</div>
           <div class="founder-photo">Photo</div>
-          <h4>H — Harsha</h4>
           <p class="founder-bio">Bio coming soon.</p>
         </div>
       </div>
@@ -332,51 +378,38 @@
   <section id="projects">
     <div class="reveal">
       <h2 class="section-title">Projects</h2>
-      <p class="section-support">Turning questions into things we can build.</p>
-    </div>
-    <div class="grid reveal">
-      <div class="card project-card">
-        <div><span class="status-pill">Future project</span><h3>Project slot</h3><p>Reserved for an upcoming DH project. Add a title, summary, and status here as work begins.</p></div>
-      </div>
-      <div class="card project-card">
-        <div><span class="status-pill">Future project</span><h3>Project slot</h3><p>Reserved for an upcoming DH project. Add a title, summary, and status here as work begins.</p></div>
-      </div>
-      <div class="card project-card">
-        <div><span class="status-pill">Future project</span><h3>Project slot</h3><p>Reserved for an upcoming DH project. Add a title, summary, and status here as work begins.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="events">
-    <div class="reveal">
-      <h2 class="section-title">Events</h2>
     </div>
     <div class="event-feature reveal">
       <div>
-        <h3>DHack'26</h3>
-        <p>Event description to be added here — replace this placeholder with the official DHack'26 overview once finalized.</p>
-        <a href="#" class="btn">Register</a>
-        <a href="#" class="btn btn-outline" style="margin-left:12px;">Speaker &amp; Schedule Info</a>
+        <h3>HSA — Human Survival Archive</h3>
+        <p>An independent science communication initiative documenting the people, ideas, and breakthroughs shaping the future of human survival and space exploration — through interviews with researchers, doctors, engineers, scientists, entrepreneurs, and innovators from around the world, alongside a growing knowledge hub that makes complex research more accessible.</p>
       </div>
       <div class="event-meta">
-        <div class="event-meta-row"><div class="label">Date</div><div class="value">To be announced</div></div>
-        <div class="event-meta-row"><div class="label">Location</div><div class="value">To be announced</div></div>
-        <div class="event-meta-row"><div class="label">Sponsors</div><div class="value">To be announced</div></div>
-        <div class="event-meta-row"><div class="label">Speakers</div><div class="value">To be announced</div></div>
+        <div class="event-meta-row"><div class="label">Status</div><div class="value">Ongoing</div></div>
+        <div class="event-meta-row"><div class="label">Format</div><div class="value">Interview series</div></div>
       </div>
     </div>
-    <div class="future-events reveal">More DH events will be listed here as they're scheduled.</div>
-  </section>
 
-  <section id="team">
-    <div class="reveal">
-      <h2 class="section-title">Team</h2>
+    <div class="video-item video-intro reveal">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/b5Jd2mo3n0c" title="HSA — Project Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <p class="video-caption">Introducing the Human Survival Archive</p>
     </div>
-    <div class="team-grid reveal">
-      <div class="team-member"><div class="team-photo">Photo</div><h4>Name</h4><div class="role">Role</div><div class="area">Area</div></div>
-      <div class="team-member"><div class="team-photo">Photo</div><h4>Name</h4><div class="role">Role</div><div class="area">Area</div></div>
-      <div class="team-member"><div class="team-photo">Photo</div><h4>Name</h4><div class="role">Role</div><div class="area">Area</div></div>
-      <div class="team-member"><div class="team-photo">Photo</div><h4>Name</h4><div class="role">Role</div><div class="area">Area</div></div>
+
+    <div class="video-grid reveal">
+      <div class="video-item">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/N56oMb41IOU" title="HSA Episode — Dr. Jonathan McDowell" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="video-caption">Dr. Jonathan McDowell — astrophysicist, space historian</p>
+      </div>
+      <div class="video-item">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/BwqG2HJMdwo" title="HSA Episode — Dr. Jennifer Fogarty" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="video-caption">Dr. Jennifer Fogarty — Chief Scientist, Center for Aerospace &amp; Extreme Environments Medicine</p>
+      </div>
     </div>
   </section>
 
@@ -419,18 +452,35 @@
       </div>
 
       <div class="chapter-box">
-        <h4>Start a DH Chapter</h4>
-        <p>Interested in bringing DH to your high school, university, or community? Tell us where.</p>
-        <form id="chapterForm">
+        <h4>Sign Up to Volunteer</h4>
+        <p>Tell us where you'd like to help and we'll follow up.</p>
+        <form id="volunteerForm" action="https://formsubmit.co/dh.official.organization@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Volunteer Sign-Up — DH website">
+          <input type="hidden" name="form_type" value="Volunteer">
           <div class="form-row">
-            <div class="field"><label for="ch-name">Name</label><input id="ch-name" required></div>
-            <div class="field"><label for="ch-email">Email</label><input id="ch-email" type="email" required></div>
+            <div class="field"><label for="vo-name">Name</label><input id="vo-name" name="Name" required></div>
+            <div class="field"><label for="vo-email">Email</label><input id="vo-email" name="Email" type="email" required></div>
           </div>
-          <div class="field"><label for="ch-place">School / University / Community</label><input id="ch-place" required></div>
-          <div class="field"><label for="ch-msg">Message</label><textarea id="ch-msg"></textarea></div>
-          <button type="submit" class="btn">Express Interest</button>
+          <div class="field">
+            <label for="vo-area">Area of Interest</label>
+            <select id="vo-area" name="Area of Interest">
+              <option>DHack'26 Volunteer</option><option>Research</option><option>AI / ML</option>
+              <option>Neuroscience</option><option>Medicine</option><option>Public Health</option>
+              <option>Engineering</option><option>Aerospace</option><option>Events</option>
+              <option>Marketing</option><option>Design</option><option>Communications</option>
+              <option>Community</option><option>Sponsorships</option><option>Leadership role</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="vo-msg">Message</label><textarea id="vo-msg" name="Message"></textarea></div>
+          <button type="submit" class="btn">Sign Up to Volunteer</button>
           <div class="form-status">Thanks — we'll be in touch.</div>
         </form>
+      </div>
+
+      <div class="chapter-box">
+        <h4>Start a Chapter</h4>
+        <p>Interested in bringing DH to your high school or university? <a href="#contact" class="contact-email">Contact us</a> and tell us where.</p>
       </div>
 
       <div class="intern-box">
@@ -441,27 +491,29 @@
 
     <div class="join-panel" id="join-sponsor">
       <p class="section-support">Support the technologies, research, events, and people building toward a better future.</p>
-      <form id="sponsorForm">
+      <form id="sponsorForm" action="https://formsubmit.co/dh.official.organization@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Sponsorship Inquiry — DH website">
+        <input type="hidden" name="form_type" value="Sponsor">
         <div class="form-row">
-          <div class="field"><label for="sp-name">Name</label><input id="sp-name" required></div>
-          <div class="field"><label for="sp-org">Organization</label><input id="sp-org" required></div>
+          <div class="field"><label for="sp-name">Name</label><input id="sp-name" name="Name" required></div>
+          <div class="field"><label for="sp-org">Organization</label><input id="sp-org" name="Organization" required></div>
         </div>
         <div class="form-row">
-          <div class="field"><label for="sp-email">Work Email</label><input id="sp-email" type="email" required></div>
-          <div class="field"><label for="sp-web">Organization Website</label><input id="sp-web" type="url"></div>
+          <div class="field"><label for="sp-email">Work Email</label><input id="sp-email" name="Work Email" type="email" required></div>
+          <div class="field"><label for="sp-web">Organization Website</label><input id="sp-web" name="Organization Website" type="url"></div>
         </div>
         <div class="form-row">
           <div class="field">
             <label for="sp-interest">Sponsorship Interest</label>
-            <select id="sp-interest">
+            <select id="sp-interest" name="Sponsorship Interest">
               <option>DHack'26</option><option>Research</option><option>Technology</option>
               <option>Education</option><option>Community</option><option>General DH Sponsorship</option>
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="sp-industry">Industry</label><input id="sp-industry"></div>
+          <div class="field"><label for="sp-industry">Industry</label><input id="sp-industry" name="Industry"></div>
         </div>
-        <div class="field"><label for="sp-msg">Message</label><textarea id="sp-msg"></textarea></div>
+        <div class="field"><label for="sp-msg">Message</label><textarea id="sp-msg" name="Message"></textarea></div>
         <button type="submit" class="btn">Start a Conversation</button>
         <div class="form-status">Thanks — we'll be in touch.</div>
       </form>
@@ -469,27 +521,29 @@
 
     <div class="join-panel" id="join-partner">
       <p class="section-support">Build with us. DH partners with researchers, universities, companies, healthcare organizations, technology organizations, aerospace organizations, community organizations, and educational institutions.</p>
-      <form id="partnerForm">
+      <form id="partnerForm" action="https://formsubmit.co/dh.official.organization@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Partnership Proposal — DH website">
+        <input type="hidden" name="form_type" value="Partner">
         <div class="form-row">
-          <div class="field"><label for="pt-name">Name</label><input id="pt-name" required></div>
-          <div class="field"><label for="pt-org">Organization</label><input id="pt-org" required></div>
+          <div class="field"><label for="pt-name">Name</label><input id="pt-name" name="Name" required></div>
+          <div class="field"><label for="pt-org">Organization</label><input id="pt-org" name="Organization" required></div>
         </div>
         <div class="form-row">
-          <div class="field"><label for="pt-email">Work Email</label><input id="pt-email" type="email" required></div>
-          <div class="field"><label for="pt-web">Organization Website</label><input id="pt-web" type="url"></div>
+          <div class="field"><label for="pt-email">Work Email</label><input id="pt-email" name="Work Email" type="email" required></div>
+          <div class="field"><label for="pt-web">Organization Website</label><input id="pt-web" name="Organization Website" type="url"></div>
         </div>
         <div class="form-row">
           <div class="field">
             <label for="pt-type">Partnership Type</label>
-            <select id="pt-type">
+            <select id="pt-type" name="Partnership Type">
               <option>Research</option><option>Technology</option><option>Education</option>
               <option>Healthcare</option><option>Aerospace</option><option>AI / Machine Learning</option>
               <option>Community</option><option>Events</option><option>Other</option>
             </select>
           </div>
-          <div class="field"><label for="pt-area">Area of Interest</label><input id="pt-area"></div>
+          <div class="field"><label for="pt-area">Area of Interest</label><input id="pt-area" name="Area of Interest"></div>
         </div>
-        <div class="field"><label for="pt-msg">Message</label><textarea id="pt-msg"></textarea></div>
+        <div class="field"><label for="pt-msg">Message</label><textarea id="pt-msg" name="Message"></textarea></div>
         <button type="submit" class="btn">Propose a Partnership</button>
         <div class="form-status">Thanks — we'll be in touch.</div>
       </form>
@@ -499,14 +553,19 @@
   <section id="contact" style="text-align:center;">
     <div class="reveal">
       <h2 class="section-title" style="margin:0 auto;">Contact us</h2>
+      <p class="section-support" style="margin-left:auto;margin-right:auto;">
+        <a href="mailto:dh.official.organization@gmail.com" class="contact-email">dh.official.organization@gmail.com</a>
+      </p>
     </div>
-    <form class="centered reveal" id="contactForm" style="text-align:left;">
+    <form class="centered reveal" id="contactForm" style="text-align:left;" action="https://formsubmit.co/dh.official.organization@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Contact Message — DH website">
+      <input type="hidden" name="form_type" value="Contact">
       <div class="form-row">
-        <div class="field"><label for="c-name">Name</label><input id="c-name" required></div>
-        <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" required></div>
+        <div class="field"><label for="c-name">Name</label><input id="c-name" name="Name" required></div>
+        <div class="field"><label for="c-email">Email</label><input id="c-email" name="Email" type="email" required></div>
       </div>
-      <div class="field"><label for="c-subject">Subject</label><input id="c-subject" required></div>
-      <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" required></textarea></div>
+      <div class="field"><label for="c-subject">Subject</label><input id="c-subject" name="Subject" required></div>
+      <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="Message" required></textarea></div>
       <button type="submit" class="btn">Send Message</button>
       <div class="form-status">Thanks — we'll be in touch.</div>
     </form>
@@ -516,6 +575,14 @@
 
 <footer>
   <div class="nav-logo">DH</div>
+  <div class="social-links">
+    <a href="#" aria-label="Instagram" class="social-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="#" aria-label="LinkedIn" class="social-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="7" y1="10" x2="7" y2="17"/><circle cx="7" cy="6.5" r="0.6" fill="currentColor"/><path d="M11 17v-4.5a2.5 2.5 0 0 1 5 0V17"/><line x1="11" y1="10" x2="11" y2="17"/></svg>
+    </a>
+  </div>
   <p>Building for human survival, on Earth and beyond.</p>
 </footer>
 
@@ -605,6 +672,38 @@ window.addEventListener('resize', ()=>{ resize(); initParticles(); });
 resize(); initParticles(); draw();
 setTimeout(()=>{ resize(); }, 500); // catch late layout shifts
 
+// Countdown to DHack'26
+(function(){
+  const target = new Date("2026-12-05T09:00:00");
+  const dEl = document.getElementById('cd-days');
+  const hEl = document.getElementById('cd-hours');
+  const mEl = document.getElementById('cd-mins');
+  const sEl = document.getElementById('cd-secs');
+  if(!dEl) return;
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff <= 0){
+      dEl.textContent='00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00';
+      return;
+    }
+    const days = Math.floor(diff/(1000*60*60*24));
+    diff -= days*(1000*60*60*24);
+    const hours = Math.floor(diff/(1000*60*60));
+    diff -= hours*(1000*60*60);
+    const mins = Math.floor(diff/(1000*60));
+    diff -= mins*(1000*60);
+    const secs = Math.floor(diff/1000);
+    dEl.textContent = pad(days);
+    hEl.textContent = pad(hours);
+    mEl.textContent = pad(mins);
+    sEl.textContent = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
@@ -632,13 +731,29 @@ document.querySelectorAll('a[href="#join-volunteer"]').forEach(a=>a.addEventList
 document.querySelectorAll('a[href="#join-sponsor"]').forEach(a=>a.addEventListener('click',(e)=>{e.preventDefault();openJoinTab('join-sponsor');document.getElementById('join').scrollIntoView({behavior:'smooth'});}));
 document.querySelectorAll('a[href="#join-partner"]').forEach(a=>a.addEventListener('click',(e)=>{e.preventDefault();openJoinTab('join-partner');document.getElementById('join').scrollIntoView({behavior:'smooth'});}));
 
-// Forms (no backend — just confirm locally)
-document.querySelectorAll('form').forEach(f=>{
+// Forms — submit to FormSubmit (emails dh.official.organization@gmail.com), no page reload
+document.querySelectorAll('form[action]').forEach(f=>{
   f.addEventListener('submit', (e)=>{
     e.preventDefault();
     const status = f.querySelector('.form-status');
-    if(status){ status.style.display='block'; }
-    f.reset();
+    const btn = f.querySelector('button[type="submit"]');
+    const originalLabel = btn ? btn.textContent : '';
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+    fetch(f.action, {
+      method: 'POST',
+      body: new FormData(f),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(()=>{
+      if(status){ status.textContent = "Thanks — we'll be in touch."; status.style.display='block'; }
+      f.reset();
+    })
+    .catch(()=>{
+      if(status){ status.textContent = "Something went wrong — please email us directly at dh.official.organization@gmail.com."; status.style.display='block'; }
+    })
+    .finally(()=>{
+      if(btn){ btn.disabled = false; btn.textContent = originalLabel; }
+    });
   });
 });
 </script>
