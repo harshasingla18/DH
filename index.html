@@ -34,14 +34,15 @@
 
   /* Custom cursor */
   .cursor-dot{
-    position:fixed;width:6px;height:6px;background:var(--blue);
+    position:fixed;width:10px;height:10px;background:var(--blue);
     pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
-    transition:width .15s,height .15s,background .15s;
+    transition:width .18s ease,height .18s ease,background .15s;
     top:0;left:0;
   }
-  .cursor-dot.hovering{width:28px;height:28px;background:transparent;border:1px solid var(--blue);}
+  .cursor-dot.moving{width:20px;height:20px;}
+  .cursor-dot.hovering{width:34px;height:34px;background:transparent;border:1.5px solid var(--blue);}
   .cursor-trail{
-    position:fixed;width:3px;height:3px;background:rgba(24,62,250,.5);
+    position:fixed;width:5px;height:5px;background:rgba(24,62,250,.55);
     pointer-events:none;z-index:9998;transform:translate(-50%,-50%);
     top:0;left:0;
   }
@@ -53,23 +54,32 @@
 
   header, main, footer{position:relative;z-index:1;}
 
+  /* TOP TICKER */
+  .top-ticker{position:fixed;top:0;left:0;right:0;z-index:110;height:34px;
+    background:var(--blue);overflow:hidden;display:flex;align-items:center;}
+  .ticker-track{display:flex;gap:0;white-space:nowrap;width:max-content;animation:marquee-scroll 16s linear infinite;}
+  .ticker-track span{font-size:12px;font-weight:700;color:#050608;letter-spacing:.04em;padding:0 28px;}
+
   /* NAV */
   nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
+    position:fixed;top:34px;left:0;right:0;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
-    padding:28px 48px;
+    padding:22px 48px;
     background:linear-gradient(to bottom, rgba(5,6,8,.9), rgba(5,6,8,0));
     backdrop-filter:blur(6px);
   }
-  .nav-logo{font-size:20px;font-weight:700;color:var(--blue);letter-spacing:.02em;}
+  .dh-icon{display:block;}
+  .dh-icon--nav{width:52px;height:auto;}
+  .dh-icon--hero{width:min(46vw,300px);height:auto;margin:0 auto;}
+  .dh-icon--footer{width:46px;height:auto;margin:0 auto;}
   .nav-links{display:flex;gap:36px;align-items:center;position:relative;}
-  .nav-links > a{font-size:14px;color:var(--text-dim);position:relative;padding:4px 0;}
-  .nav-links > a:hover{color:var(--text);}
-  .nav-links > a::after{
+  .nav-links > a, .nav-menu-wrap > a{font-size:14px;color:var(--text-dim);position:relative;padding:4px 0;display:inline-block;}
+  .nav-links > a:hover, .nav-menu-wrap > a:hover{color:var(--text);}
+  .nav-links > a::after, .nav-menu-wrap > a::after{
     content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--blue);
     transition:width .25s ease;
   }
-  .nav-links > a:hover::after{width:100%;}
+  .nav-links > a:hover::after, .nav-menu-wrap > a:hover::after{width:100%;}
   .nav-menu-wrap{position:relative;}
   .nav-dropdown{
     position:absolute;top:28px;left:0;min-width:160px;
@@ -92,25 +102,20 @@
     .mobile-toggle{display:block;}
   }
 
-  section{padding:180px 48px;max-width:1280px;margin:0 auto;position:relative;}
-  @media (max-width:860px){section{padding:120px 24px;}}
+  section{padding:72px 48px;max-width:1280px;margin:0 auto;position:relative;}
+  @media (max-width:860px){section{padding:56px 24px;}}
 
   .eyebrow{font-size:13px;color:var(--text-dim);margin-bottom:20px;}
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal{
+    opacity:0;transform:translateY(28px) scale(.98);filter:blur(4px);
+    transition:opacity .9s cubic-bezier(.16,.84,.44,1),transform .9s cubic-bezier(.16,.84,.44,1),filter .9s ease;
+  }
+  .reveal.in{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
 
   /* HERO */
   #home{
     height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:0 24px;max-width:none;
-  }
-  .hero-mark{
-    font-size:clamp(80px,16vw,190px);font-weight:800;color:var(--blue);
-    letter-spacing:-.02em;line-height:1;
-  }
-  .hero-tag{
-    margin-top:28px;font-size:clamp(14px,2vw,20px);color:var(--text-dim);
-    letter-spacing:.08em;font-weight:500;
   }
   .scroll-hint{
     position:absolute;bottom:48px;left:50%;transform:translateX(-50%);
@@ -121,14 +126,19 @@
     font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-.02em;line-height:1.05;
     max-width:900px;
   }
-  .section-support{margin-top:20px;font-size:18px;color:var(--text-dim);max-width:560px;}
+  .section-support{margin-top:14px;font-size:18px;color:var(--text-dim);max-width:560px;}
+  .mission-line{
+    font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--text);
+    letter-spacing:-.01em;line-height:1.2;max-width:920px;cursor:default;
+  }
+  .fly-letter{display:inline-block;transition:transform .3s ease;will-change:transform;}
 
   /* ABOUT extras */
-  .about-block{margin-top:64px;max-width:640px;}
+  .about-block{margin-top:24px;max-width:640px;}
   .about-subhead{font-size:14px;color:var(--blue);letter-spacing:.04em;margin-bottom:16px;font-weight:700;}
   .about-text{font-size:16px;line-height:1.75;color:var(--text-dim);}
 
-  .founders-block{margin-top:80px;}
+  .founders-block{margin-top:24px;}
   .founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:32px;max-width:760px;}
   @media (max-width:700px){.founders-grid{grid-template-columns:1fr;}}
   .founder{display:flex;flex-direction:column;align-items:flex-start;}
@@ -136,7 +146,20 @@
   .founder-photo{width:100%;aspect-ratio:1;background:var(--bg-2);border:1px solid var(--border);
     display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:13px;margin-bottom:20px;}
   .founder h4{font-size:20px;font-weight:700;margin-bottom:10px;}
+  .founder-name{font-size:15px;font-weight:700;letter-spacing:.04em;color:var(--text);margin-bottom:10px;}
   .founder-bio{font-size:14px;color:var(--text-dim);line-height:1.6;}
+
+  /* SPONSOR MARQUEE */
+  .marquee-section{padding:24px 0;max-width:none;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .marquee-track{display:flex;gap:72px;width:max-content;animation:marquee-scroll 28s linear infinite;}
+  .marquee-section:hover .marquee-track{animation-play-state:paused;}
+  .marquee-item{font-size:22px;font-weight:700;color:var(--text-dim);white-space:nowrap;
+    opacity:.55;transition:opacity .3s ease,color .3s ease;}
+  .marquee-item:hover{opacity:1;color:var(--blue);}
+  @keyframes marquee-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
 
   /* FOCUS */
   #focus{text-align:center;}
@@ -165,7 +188,7 @@
 
   /* EVENTS */
   .event-feature{
-    margin-top:64px;border:1px solid var(--border);padding:56px 48px;background:var(--bg-2);
+    margin-top:24px;border:1px solid var(--border);padding:40px 48px;background:var(--bg-2);
     display:grid;grid-template-columns:1.4fr 1fr;gap:48px;
   }
   @media (max-width:800px){.event-feature{grid-template-columns:1fr;padding:36px 24px;}}
@@ -186,7 +209,7 @@
     color:var(--text-dim);font-size:14px;}
 
   /* COUNTDOWN */
-  .countdown{margin-top:48px;text-align:center;}
+  .countdown{margin-top:24px;text-align:center;}
   .countdown-label{font-size:13px;color:var(--text-dim);letter-spacing:.06em;margin-bottom:24px;}
   .countdown-grid{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
   .countdown-unit{min-width:90px;padding:24px 16px;border:1px solid var(--border);background:var(--bg-2);}
@@ -194,8 +217,8 @@
   .countdown-word{margin-top:10px;font-size:12px;color:var(--text-dim);letter-spacing:.04em;}
 
   /* VIDEO GRID */
-  .video-intro{margin-top:48px;max-width:820px;}
-  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;}
+  .video-intro{margin-top:28px;max-width:820px;}
+  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px;}
   @media (max-width:800px){.video-grid{grid-template-columns:1fr;}}
   .video-embed{position:relative;width:100%;aspect-ratio:16/9;background:var(--bg-2);border:1px solid var(--border);overflow:hidden;}
   .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
@@ -211,7 +234,7 @@
   .team-member .area{font-size:13px;color:var(--text-dim);margin-top:2px;}
 
   /* JOIN US */
-  .join-tabs{display:flex;gap:0;margin-top:56px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+  .join-tabs{display:flex;gap:0;margin-top:32px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
   .join-tab{padding:18px 28px;font-size:15px;color:var(--text-dim);cursor:pointer;position:relative;font-weight:600;}
   .join-tab.active{color:var(--text);}
   .join-tab.active::after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--blue);}
@@ -223,7 +246,7 @@
   .role-columns ul{list-style:none;}
   .role-columns li{font-size:14px;color:var(--text-dim);padding:9px 0;border-top:1px solid var(--border);}
   .role-columns li:hover{color:var(--text);}
-  .chapter-box, .intern-box{margin-top:48px;padding:36px;border:1px solid var(--border);background:var(--bg-2);}
+  .chapter-box, .intern-box{margin-top:28px;padding:28px;border:1px solid var(--border);background:var(--bg-2);}
   .chapter-box h4, .intern-box h4{font-size:20px;margin-bottom:10px;}
   .chapter-box p, .intern-box p{color:var(--text-dim);font-size:14px;line-height:1.6;margin-bottom:20px;}
   .coming-soon{font-size:11px;color:var(--text-dim);border:1px solid var(--border);padding:4px 10px;display:inline-block;}
@@ -244,7 +267,6 @@
   .form-status{margin-top:16px;font-size:13px;color:var(--blue);display:none;}
 
   footer{padding:64px 48px 40px;border-top:1px solid var(--border);text-align:center;}
-  footer .nav-logo{font-size:16px;}
   footer p{color:var(--text-dim);font-size:13px;margin-top:12px;}
   .social-links{display:flex;justify-content:center;gap:18px;margin-top:20px;}
   .social-icon{color:var(--text-dim);display:flex;align-items:center;justify-content:center;
@@ -264,11 +286,38 @@
 </head>
 <body>
 
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="dh-logo-mark" viewBox="0 0 2560 1320">
+      <path fill-rule="evenodd" fill="#183EFA" d="M90,90 H970 Q1250,90 1250,370 V1050 Q1250,1230 970,1230 H90 Z M330,330 H970 Q1010,330 1010,370 V950 Q1010,990 970,990 H330 Z"/>
+      <rect fill="#183EFA" x="1300" y="90" width="240" height="1140"/>
+      <rect fill="#183EFA" x="2220" y="90" width="240" height="1140"/>
+      <rect fill="#183EFA" x="1540" y="540" width="680" height="240"/>
+      <path fill="none" stroke="#F5F7FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" transform="rotate(8 1237.5 200)" d="M1185,145 L1268,255 L1290,145"/>
+      <path fill="none" stroke="#F5F7FF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-8 1237.5 1120)" d="M1185,1175 L1268,1065 L1290,1175"/>
+    </symbol>
+  </defs>
+</svg>
+
+
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="field"></canvas>
 
+<div class="top-ticker" role="status">
+  <div class="ticker-track">
+    <span>Applications for DHack'26 are open!</span>
+    <span>Applications for DHack'26 are open!</span>
+    <span>Applications for DHack'26 are open!</span>
+    <span>Applications for DHack'26 are open!</span>
+    <span>Applications for DHack'26 are open!</span>
+    <span>Applications for DHack'26 are open!</span>
+    <span>Applications for DHack'26 are open!</span>
+    <span>Applications for DHack'26 are open!</span>
+  </div>
+</div>
+
 <nav>
-  <a href="#home" class="nav-logo">DH</a>
+  <a href="#home" aria-label="DH home"><svg class="dh-icon dh-icon--nav"><use href="#dh-logo-mark"/></svg></a>
   <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
   <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
@@ -290,15 +339,13 @@
 <main>
 
   <section id="home">
-    <div class="hero-mark reveal in">DH</div>
-    <div class="hero-tag reveal in">BUILDING FOR HUMAN SURVIVAL.</div>
+    <svg class="dh-icon dh-icon--hero reveal in" aria-label="DH"><use href="#dh-logo-mark"/></svg>
     <div class="scroll-hint"></div>
   </section>
 
   <section id="about">
     <div class="reveal">
-      <h2 class="section-title">We build for human survival.</h2>
-      <p class="section-support">We build technologies, conduct research, connect people, and preserve knowledge to advance human survival on Earth and beyond.</p>
+      <p class="mission-line mission-fly">We build technologies, conduct research, connect people, and preserve knowledge to advance human survival on Earth and beyond.</p>
     </div>
 
     <div class="about-block reveal">
@@ -306,7 +353,7 @@
       <p class="about-text">DH is an organization working at the intersection of science, medicine, engineering, and exploration to address problems whose solutions don't yet exist. This includes cancer, mental health, AI, ML, robotics, aerospace, and engineering.</p>
     </div>
 
-    <div class="about-block reveal" style="margin-top:80px;">
+    <div class="about-block reveal" style="margin-top:40px;">
       <h3 class="about-subhead">Philosophy</h3>
       <p class="about-text">Humanity's greatest advances have come from doing what we thought was impossible and what we did not yet understand. Diseases once considered incurable became treatable. Technologies like airplanes proved we could fly. Humans left Earth and began exploring beyond it. DH exists to pursue what comes next. We believe the unknown is not a boundary — it's an infinite invitation for humans to do something.</p>
     </div>
@@ -353,14 +400,35 @@
         <div class="founder">
           <div class="founder-letter">D</div>
           <div class="founder-photo">Photo</div>
-          <p class="founder-bio">Bio coming soon.</p>
+          <h4 class="founder-name">DHATRI MEDIDHI</h4>
+          <p class="founder-bio">Dhatri Medidhi is a B.Tech student at BVRIT Women's College of Engineering in Hyderabad, India, studying CS and AI. She previously attended Lake Washington High School in WA and Liberty High School in TX before moving to India after graduating.</p>
         </div>
         <div class="founder">
           <div class="founder-letter">H</div>
           <div class="founder-photo">Photo</div>
-          <p class="founder-bio">Bio coming soon.</p>
+          <h4 class="founder-name">HARSHA SINGLA</h4>
+          <p class="founder-bio">Harsha Singla is a pre-med student at the University of Washington with an interest in neuroscience, aerospace medicine, research, and tech. She previously attended Lake Washington High School in WA.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="sponsor-strip" class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-item">T-Mobile</div>
+      <div class="marquee-item">Meta</div>
+      <div class="marquee-item">Microsoft</div>
+      <div class="marquee-item">Google</div>
+      <div class="marquee-item">Amazon</div>
+      <div class="marquee-item">Seattle Children's</div>
+      <div class="marquee-item">Fred Hutch</div>
+      <div class="marquee-item">T-Mobile</div>
+      <div class="marquee-item">Meta</div>
+      <div class="marquee-item">Microsoft</div>
+      <div class="marquee-item">Google</div>
+      <div class="marquee-item">Amazon</div>
+      <div class="marquee-item">Seattle Children's</div>
+      <div class="marquee-item">Fred Hutch</div>
     </div>
   </section>
 
@@ -440,13 +508,13 @@
         <div>
           <h4>LEADERSHIP</h4>
           <ul>
-            <li>Director of Sponsorships</li><li>Director of Computer Science</li>
-            <li>Director of Medicine</li><li>Director of Public Health</li>
-            <li>Director of Research</li><li>Director of Neuroscience</li>
-            <li>Director of Artificial Intelligence</li><li>Director of Engineering</li>
-            <li>Director of Aerospace</li><li>Director of Events</li>
+            <li>Director of Sponsorships</li><li>Director of Events</li>
             <li>Director of Marketing</li><li>Director of Design</li>
             <li>Director of Communications</li><li>Director of Community</li>
+            <li>Director of Computer Science</li><li>Director of Medicine</li>
+            <li>Director of Public Health</li><li>Director of Research</li>
+            <li>Director of Artificial Intelligence</li><li>Director of Engineering</li>
+            <li>Director of Aerospace</li>
           </ul>
         </div>
       </div>
@@ -574,7 +642,7 @@
 </main>
 
 <footer>
-  <div class="nav-logo">DH</div>
+  <svg class="dh-icon dh-icon--footer" aria-label="DH"><use href="#dh-logo-mark"/></svg>
   <div class="social-links">
     <a href="#" aria-label="Instagram" class="social-icon">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
@@ -602,10 +670,14 @@ joinWrap.querySelector('a').addEventListener('click',(e)=>{
 // Custom cursor
 const dot = document.getElementById('cursorDot');
 let trailPool = [];
+let moveTimeout;
 if(window.matchMedia('(pointer: fine)').matches){
   document.addEventListener('mousemove', (e)=>{
     dot.style.left = e.clientX+'px';
     dot.style.top = e.clientY+'px';
+    dot.classList.add('moving');
+    clearTimeout(moveTimeout);
+    moveTimeout = setTimeout(()=>dot.classList.remove('moving'), 180);
     const t = document.createElement('div');
     t.className='cursor-trail';
     t.style.left = e.clientX+'px';
@@ -704,7 +776,11 @@ setTimeout(()=>{ resize(); }, 500); // catch late layout shifts
   setInterval(tick, 1000);
 })();
 
-// Scroll reveal
+// Scroll reveal (staggered within each section)
+document.querySelectorAll('section').forEach(sec=>{
+  const els = sec.querySelectorAll('.reveal');
+  els.forEach((el,i)=>{ el.style.transitionDelay = Math.min(i,5)*90+'ms'; });
+});
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
@@ -712,6 +788,44 @@ const io = new IntersectionObserver((entries)=>{
   });
 },{threshold:0.15});
 revealEls.forEach(el=>io.observe(el));
+
+// Hero parallax fade on scroll
+const heroMark = document.querySelector('.dh-icon--hero');
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY;
+  const fade = Math.max(0, 1 - y/500);
+  const shift = y*0.25;
+  if(heroMark){ heroMark.style.opacity = fade; heroMark.style.transform = `translateY(${shift}px)`; }
+}, {passive:true});
+
+// Fly-apart hover text
+document.querySelectorAll('.mission-fly').forEach(el=>{
+  const text = el.textContent;
+  el.innerHTML = '';
+  text.split('').forEach(ch=>{
+    const span = document.createElement('span');
+    span.className = 'fly-letter';
+    span.textContent = ch === ' ' ? '\u00A0' : ch;
+    el.appendChild(span);
+  });
+  let flyInterval;
+  const scatter = ()=>{
+    el.querySelectorAll('.fly-letter').forEach(s=>{
+      const tx = (Math.random()-0.5)*46;
+      const ty = (Math.random()-0.5)*46;
+      const rot = (Math.random()-0.5)*50;
+      s.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+    });
+  };
+  el.addEventListener('mouseenter', ()=>{
+    scatter();
+    flyInterval = setInterval(scatter, 280);
+  });
+  el.addEventListener('mouseleave', ()=>{
+    clearInterval(flyInterval);
+    el.querySelectorAll('.fly-letter').forEach(s=>{ s.style.transform=''; });
+  });
+});
 
 // Join tabs
 document.querySelectorAll('.join-tab').forEach(tab=>{
