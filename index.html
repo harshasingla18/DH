@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DH — Building for Human Survival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --blue:#183EFA;
@@ -18,7 +21,7 @@
   body{
     background:var(--bg);
     color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",Arial,sans-serif;
+    font-family:"JetBrains Mono","SF Mono","Fira Code",Menlo,Consolas,"Courier New",monospace;
     overflow-x:hidden;
     cursor:none;
   }
@@ -102,8 +105,8 @@
     text-align:center;padding:0 24px;max-width:none;
   }
   .hero-mark{
-    font-size:clamp(90px,18vw,220px);font-weight:800;color:var(--blue);
-    letter-spacing:-.03em;line-height:1;
+    font-size:clamp(80px,16vw,190px);font-weight:800;color:var(--blue);
+    letter-spacing:-.02em;line-height:1;
   }
   .hero-tag{
     margin-top:28px;font-size:clamp(14px,2vw,20px);color:var(--text-dim);
@@ -119,6 +122,22 @@
     max-width:900px;
   }
   .section-support{margin-top:20px;font-size:18px;color:var(--text-dim);max-width:560px;}
+
+  /* ABOUT extras */
+  .about-block{margin-top:64px;max-width:640px;}
+  .about-subhead{font-size:14px;color:var(--blue);letter-spacing:.04em;margin-bottom:16px;font-weight:700;}
+  .about-text{font-size:16px;line-height:1.75;color:var(--text-dim);}
+  .unknown-list{list-style:none;}
+  .unknown-list li{font-size:18px;line-height:2;color:var(--text);position:relative;padding-left:20px;}
+  .unknown-list li::before{content:"—";position:absolute;left:0;color:var(--blue);}
+
+  .founders-block{margin-top:80px;}
+  .founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:32px;max-width:760px;}
+  @media (max-width:700px){.founders-grid{grid-template-columns:1fr;}}
+  .founder-photo{width:100%;aspect-ratio:1;background:var(--bg-2);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:13px;margin-bottom:20px;}
+  .founder h4{font-size:20px;font-weight:700;margin-bottom:10px;}
+  .founder-bio{font-size:14px;color:var(--text-dim);line-height:1.6;}
 
   /* FOCUS */
   #focus{text-align:center;}
@@ -233,7 +252,6 @@
   <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
     <a href="#events">Events</a>
-    <a href="#research">Research</a>
     <a href="#projects">Projects</a>
     <a href="#team">Team</a>
     <div class="nav-menu-wrap" id="joinWrap">
@@ -261,6 +279,43 @@
       <h2 class="section-title">We build for human survival.</h2>
       <p class="section-support">We build technologies, conduct research, connect people, and preserve knowledge to advance human survival on Earth and beyond.</p>
     </div>
+
+    <div class="about-block reveal">
+      <h3 class="about-subhead">What is DH?</h3>
+      <p class="about-text">DH is an organization working at the intersection of science, medicine, engineering, and exploration to address problems whose solutions don't yet exist. This includes cancer, mental health, AI, ML, robotics, aerospace, and engineering.</p>
+    </div>
+
+    <div class="about-block reveal">
+      <h3 class="about-subhead">The unknown is</h3>
+      <ul class="unknown-list">
+        <li>the unanswered scientific question</li>
+        <li>the unsolved disease</li>
+        <li>the undiscovered knowledge</li>
+        <li>the unlisted technology</li>
+        <li>the unexplored universe</li>
+      </ul>
+    </div>
+
+    <div class="about-block reveal">
+      <h3 class="about-subhead">Philosophy</h3>
+      <p class="about-text">Humanity's greatest advances have come from doing what we thought was impossible and what we did not yet understand. Diseases once considered incurable became treatable. Technologies like airplanes proved we could fly. Humans left Earth and began exploring beyond it. DH exists to pursue what comes next. We believe the unknown is not a boundary — it's an infinite invitation for humans to do something.</p>
+    </div>
+
+    <div class="reveal founders-block">
+      <h3 class="about-subhead">Founders</h3>
+      <div class="founders-grid">
+        <div class="founder">
+          <div class="founder-photo">Photo</div>
+          <h4>D — Dhatri</h4>
+          <p class="founder-bio">Bio coming soon.</p>
+        </div>
+        <div class="founder">
+          <div class="founder-photo">Photo</div>
+          <h4>H — Harsha</h4>
+          <p class="founder-bio">Bio coming soon.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="focus">
@@ -271,23 +326,6 @@
       <div class="focus-word">AEROSPACE</div>
       <div class="focus-word">HUMANITY</div>
       <div class="focus-word">BEYOND</div>
-    </div>
-  </section>
-
-  <section id="research">
-    <div class="reveal">
-      <h2 class="section-title">Research</h2>
-      <p class="section-support">Understanding the problems that matter.</p>
-    </div>
-    <div class="grid reveal">
-      <div class="card"><div><h3>Neuroscience</h3><p>Understanding cognition, memory, and the brain's response to extreme environments.</p></div><div class="tag">Research area</div></div>
-      <div class="card"><div><h3>Cancer &amp; Oncology</h3><p>Detection, treatment, and prevention research aimed at reducing disease burden.</p></div><div class="tag">Research area</div></div>
-      <div class="card"><div><h3>Artificial Intelligence / Machine Learning</h3><p>Applying AI to accelerate discovery across every DH research area.</p></div><div class="tag">Research area</div></div>
-      <div class="card"><div><h3>Biomedical Research</h3><p>Foundational biology and engineering work toward better human health.</p></div><div class="tag">Research area</div></div>
-      <div class="card"><div><h3>Medical Imaging</h3><p>Improving how we see, diagnose, and understand the human body.</p></div><div class="tag">Research area</div></div>
-      <div class="card"><div><h3>Medical Technology</h3><p>Devices and tools that extend the reach and quality of care.</p></div><div class="tag">Research area</div></div>
-      <div class="card"><div><h3>Public Health</h3><p>Population-level research on prevention, access, and outcomes.</p></div><div class="tag">Research area</div></div>
-      <div class="card"><div><h3>Aerospace Medicine</h3><p>Preparing human physiology for life and work beyond Earth.</p></div><div class="tag">Research area</div></div>
     </div>
   </section>
 
