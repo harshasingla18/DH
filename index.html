@@ -54,17 +54,6 @@
 
   header, main, footer{position:relative;z-index:1;}
 
-  /* FLOATING MINI LOGO */
-  .dh-float{
-    position:fixed;right:36px;top:50%;z-index:80;pointer-events:none;
-    width:50px;opacity:0;
-    transform:translateY(-50%) translateX(50px);
-    transition:opacity .6s ease, transform .6s cubic-bezier(.16,.84,.44,1), width .35s ease;
-  }
-  .dh-float.visible{opacity:.9;transform:translateY(-50%) translateX(0);}
-  .dh-float svg{width:100%;height:auto;display:block;}
-  @media (max-width:1400px){ .dh-float{display:none;} }
-
   /* SCROLL SPINE */
   .scroll-spine{position:fixed;top:0;left:0;width:2px;height:100vh;background:rgba(255,255,255,.05);z-index:90;}
   .scroll-spine-fill{width:100%;height:0%;background:var(--blue);box-shadow:0 0 12px rgba(24,62,250,.6);}
@@ -220,8 +209,8 @@
   .event-locations{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;}
   @media (max-width:600px){.event-locations{grid-template-columns:1fr;}}
   .event-location{border-top:1px solid var(--border);padding-top:14px;}
-  .event-location .loc-pin{font-size:14px;}
-  .event-location h4{font-size:15px;font-weight:700;color:var(--text);margin:6px 0 4px;}
+  .event-location h4{font-size:15px;font-weight:700;color:var(--text);margin:0 0 4px;display:flex;align-items:center;gap:6px;}
+  .event-location .loc-pin{color:var(--blue);flex-shrink:0;}
   .event-location p{font-size:13px;color:var(--text-dim);margin:0;line-height:1.5;}
   .event-feature p{color:var(--text-dim);line-height:1.7;margin-bottom:24px;}
   .event-meta{display:flex;flex-direction:column;gap:18px;}
@@ -361,10 +350,6 @@
 
 <div class="scroll-spine"><div class="scroll-spine-fill" id="scrollSpineFill"></div></div>
 
-<div class="dh-float" id="dhFloat">
-  <svg class="dh-icon" viewBox="0 0 2560 1320"><use href="#dh-logo-mark"/></svg>
-</div>
-
 <div class="top-ticker" role="status">
   <div class="ticker-track">
     <span>Applications for DHack'26 are open!</span>
@@ -432,13 +417,11 @@
         <p class="event-tagline-sub">BUILDING SOMETHING REAL IN 12 HOURS.</p>
         <div class="event-locations">
           <div class="event-location">
-            <span class="loc-pin">📍</span>
-            <h4>DHack'26 Seattle</h4>
+            <h4><svg class="loc-pin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg> DHack'26 Seattle</h4>
             <p>University of Washington, Seattle</p>
           </div>
           <div class="event-location">
-            <span class="loc-pin">📍</span>
-            <h4>DHack'26 Hyderabad</h4>
+            <h4><svg class="loc-pin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg> DHack'26 Hyderabad</h4>
             <p>BVRIT Women's College of Engineering</p>
           </div>
         </div>
@@ -981,8 +964,7 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:0.15});
 revealEls.forEach(el=>io.observe(el));
 
-// Floating mini logo: flies in from the hero and docks on the right, pulsing subtly with scroll
-const dhFloat = document.getElementById('dhFloat');
+// Scroll-driven effects (spine progress, heading drift)
 const titleEls = document.querySelectorAll('h2.section-title');
 let scrollTicking = false;
 function updateScrollEffects(){
@@ -995,14 +977,6 @@ function updateScrollEffects(){
     const docHeight = document.documentElement.scrollHeight - vh;
     const pct = docHeight > 0 ? Math.min(100, (y / docHeight) * 100) : 0;
     spineFill.style.height = pct + '%';
-  }
-
-  // Floating mini logo
-  if(dhFloat){
-    const showThreshold = vh * 0.7;
-    dhFloat.classList.toggle('visible', y > showThreshold);
-    const pulse = 46 + Math.sin(y / 380) * 10;
-    dhFloat.style.width = pulse + 'px';
   }
 
   // Section headings drift through space as they cross the viewport
@@ -1106,4 +1080,3 @@ document.querySelectorAll('form[action]').forEach(f=>{
 
 </body>
 </html>
-
